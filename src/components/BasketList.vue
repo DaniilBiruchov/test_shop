@@ -1,31 +1,34 @@
 <template>
-  <v-container class="main_basket">
+  <v-container class="basket">
     <div
       v-for="(product, index) in getBasket"
       :key="index"
-      class="basketProduct"
+      class="basket_products"
     >
-      <p class="basketProduct_category">
+      <p class="basket_products_category">
         {{ product.category }}
       </p>
-      <p class="basketProduct_name">
+      <p class="basket_products_name">
         {{ product.name }}
       </p>
-      <div class="basketProduct_price">
+      <div class="basket_products_price">
         <input
           v-model="product.count"
           type="text"
-          class="basketProduct_price_field"
+          class="basket_products_price_field"
+          disabled
         />
       </div>
-      <p class="basketProduct_count">
+      <p class="basket_products_count">
         {{ (product.price * currentRate).toFixed(2) }}
       </p>
-      <button class="basketProduct_action" @click="removeProduct(product)">
+      <button class="basket_products_action" @click="removeProduct(product)">
         Удалить
       </button>
     </div>
-    <div>Общая стоимость: {{ (getBasketTotal * currentRate).toFixed(2) }}</div>
+    <div v-if="getBasket.length > 0">
+      Общая стоимость: {{ (getBasketTotal * currentRate).toFixed(2) }}
+    </div>
   </v-container>
 </template>
 
@@ -47,43 +50,43 @@ export default {
     ...mapMutations(['removeProductFromBasket']),
 
     removeProduct(product) {
-      console.log(this.getBasket);
       this.removeProductFromBasket(product);
     },
   },
 };
 </script>
-<style lang="scss" scoped>
-.basketProduct {
+<style scoped>
+.basket_products {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 }
-.basketProduct_category {
+.basket_products_category {
   border: 1px solid;
   background: #ffff0088;
   width: 20%;
   margin-right: 8px;
   text-align: center;
 }
-.basketProduct_name {
+.basket_products_name {
   width: 50%;
   margin-right: 8px;
 }
-.basketProduct_price {
+.basket_products_price {
   width: 5%;
   margin-right: 8px;
 }
-.basketProduct_price_field {
+.basket_products_price_field {
   border: 1px solid black;
   width: 100%;
   text-align: center;
 }
-.basketProduct_count {
+.basket_products_count {
   width: 10%;
   margin-right: 8px;
 }
-.basketProduct_action {
+.basket_products_action {
   width: 15%;
   color: white;
   background: #b71c1c;

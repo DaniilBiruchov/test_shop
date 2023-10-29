@@ -1,7 +1,7 @@
 <template>
   <v-container class="header">
-    <p class="header_rate">Курс: {{ currentRate }}</p>
-    <p class="header_timer">Обновление через: {{ timer }}</p>
+    <p>Курс: ₽ {{ currentRate }}</p>
+    <p>Обновление через: {{ timer }}</p>
   </v-container>
 </template>
 
@@ -19,7 +19,7 @@ export default {
     timer: TIMER_INTERVAL_SECONDS,
   }),
   mounted() {
-    this.updateTimer(); // Запуск таймера
+    this.updateTimer();
   },
   methods: {
     updateTimer() {
@@ -37,24 +37,10 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style scoped>
 .header {
   display: flex;
   justify-content: space-around;
   align-items: center;
-}
-.header_courses {
-  display: flex;
-  align-items: center;
-}
-
-.header_courses_title {
-  padding-right: 10px;
-}
-
-.header_courses_value {
-  width: 40px;
-  border: 1px solid black;
-  text-align: center;
 }
 </style>

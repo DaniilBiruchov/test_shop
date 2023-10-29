@@ -1,19 +1,21 @@
 <template>
-  <v-container class="main_products">
+  <v-container class="products">
     <v-expansion-panels>
       <v-expansion-panel v-for="(category, i) in getProducts" :key="i">
         <v-expansion-panel-header>
           {{ category.G }}
         </v-expansion-panel-header>
         <v-expansion-panel-content v-for="(product, i) in category.B" :key="i">
-          <div class="listProduct">
-            <p class="listProduct_name">{{ product.N }} ({{ product.P }})</p>
-            <div class="listProduct_info">
-              <p class="listProduct_info_price">
+          <div class="products_listProduct">
+            <p class="products_listProduct_name">
+              {{ product.N }} ({{ product.P }})
+            </p>
+            <div class="products_listProduct_info">
+              <p class="products_listProduct_info_price">
                 {{ (product.C * currentRate).toFixed(2) }}
               </p>
               <button
-                class="listProduct_info_action"
+                class="products_listProduct_info_action"
                 @click="addProducts(product, category.G)"
               >
                 Купить
@@ -55,30 +57,30 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
-.main_products {
+<style scoped>
+.products {
   margin-right: 10px;
 }
-.listProduct {
+.products_listProduct {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.listProduct_name {
+.products_listProduct_name {
   width: 70%;
 }
-.listProduct_info {
+.products_listProduct_info {
   width: 30%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
-.listProduct_info_price {
+.products_listProduct_info_price {
   padding-right: 5px;
   margin-right: 5px;
   border-right: 1px solid grey;
 }
-.listProduct_info_action {
+.products_listProduct_info_action {
   color: white;
   background: #8c9eff;
   border: 1px solid;
